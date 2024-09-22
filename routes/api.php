@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjectStateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +20,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/user', [UserController::class, 'index']);
+
+Route::get('/user/{id}', [UserController::class, 'show']);
+
+Route::get('/project', [ProjectController::class, 'index']);
+
+Route::get('/project/{id}', [ProjectController::class, 'show']);
+
+Route::get('/project_state', [ProjectStateController::class, 'index']);
+
+Route::get('/project_state/{id}', [ProjectStateController::class, 'show']);
