@@ -3,25 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Project;
+use App\Models\Task;
 
-class ProjectController extends Controller
+class TaskController extends Controller
 {
-    
     public function index(Request $request)
     {
-        return Project::with(['state', 'manager'])->limit($request->perpage ?? 5)
+        return Task::with(['state', 'user', 'project'])->limit($request->perpage ?? 5)
             ->offset(($request->perpage ?? 5) * ($request->page ?? 0))->get();
     }
 
     public function total()
     {
-        return Project::all()->count();
+        return Task::all()->count();
     }
 
     public function show(string $id)
     {
-        return Project::find($id);
+        return Task::find($id);
     }
 
 }
